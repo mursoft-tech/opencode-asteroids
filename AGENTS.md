@@ -17,7 +17,8 @@ Single-file HTML5 canvas game. No package manager, bundler, tests, lint, or CI â
 
 - `'use strict'`, one global script, no imports/exports. Keep it that way.
 - Player-facing text and comments are in Spanish (`SCORE`, `NIVEL`, `GAME OVER`). Match the existing language when adding UI strings.
-- Input uses `keys` (held) vs `justPressed`/`pressed()` (edge-triggered, read-once). Use `pressed()` for one-shot actions like shooting/restart.
-- State machine: `'playing' | 'dead' | 'gameover'`, with `deadTimer` and `ship.invincible` for respawn invincibility.
+- Input uses `keys` (held) vs `justPressed`/`pressed()` (edge-triggered, read-once). Use `pressed()` for one-shot actions like shooting/restart. Pause/quit combos use `Ctrl+Shift` and are stored under synthetic labels like `'Ctrl+Shift+P'`.
+- State machine: `'playing' | 'dead' | 'gameover' | 'paused'`, with `prevState` for pause/resume and `deadTimer`/`ship.invincible` for respawn invincibility.
 - World is toroidal â€” wrap positions through the `wrap()` helper; don't clamp to edges.
-- README lists power-ups and a "estrella fugaz" asteroid that are **not** implemented in `game.js`; treat README feature claims as aspirational.
+- `PowerUp` (velocidad) drifts with `wrap()`, expires after 12 s, and on pickup sets `ship.speedTimer = 5`; the boost is `2x` on `THRUST`.
+- The README's "estrella fugaz" asteroid is **not** implemented in `game.js`; the velocidad power-up is. Verify feature claims against `game.js`.
