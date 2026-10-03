@@ -83,6 +83,9 @@ const SHOOTING_STAR_POINTS = 150;
 const SHOOTING_STAR_TTL    = 6;    // segundos antes de desvanecerse
 const SHOOTING_STAR_MULT   = 2.2;  // multiplicador de velocidad
 
+const POWERUP_DURATION = 5;    // segundos que dura un power-up activo
+const TRIPLE_SPREAD    = 0.14; // rad (~8°) de desviación por bala lateral
+
 class Asteroid {
   constructor(x, y, size = 3, opts = {}) {
     this.x    = x;
@@ -217,7 +220,11 @@ class Ship {
     const NOSE = 21;
     const ox = this.x + Math.cos(this.angle) * NOSE;
     const oy = this.y + Math.sin(this.angle) * NOSE;
-    return [new Bullet(ox, oy, this.angle)];
+    return [
+      new Bullet(ox, oy, this.angle - TRIPLE_SPREAD),
+      new Bullet(ox, oy, this.angle),
+      new Bullet(ox, oy, this.angle + TRIPLE_SPREAD),
+    ];
   }
 
   draw() {
@@ -334,6 +341,7 @@ let state;      // 'playing' | 'dead' | 'gameover' | 'paused'
 let prevState = 'playing';
 let deadTimer;
 let shootingStarTimer;
+let powerupDropped; // garantiza al menos un power-up por nivel
 
 function spawnAsteroids(count) {
   const SAFE_DIST = 130;
@@ -370,6 +378,7 @@ function initGame() {
   state  = 'playing';
   prevState = 'playing';
   shootingStarTimer = 8;
+  powerupDropped = false;
   spawnAsteroids(4);
 }
 
@@ -378,6 +387,7 @@ function nextLevel() {
   bullets   = [];
   particles = [];
   powerups  = [];
+  powerupDropped = false;
   ship.reset();
   spawnAsteroids(3 + level);
 }
@@ -467,7 +477,10 @@ function update(dt) {
         a.dead = true;
         score += a.special ? SHOOTING_STAR_POINTS : POINTS[a.size];
         explode(a.x, a.y, a.special ? 16 : a.size * 5);
-        if (!a.special && a.size >= 2 && Math.random() < 0.2) powerups.push(new PowerUp(a.x, a.y));
+        if (!a.special && a.size >= 2 && (!powerupDropped || Math.random() < 0.2)) {
+          powerups.push(new PowerUp(a.x, a.y));
+          powerupDropped = true;
+        }
         newAsteroids.push(...a.split());
       }
     }
@@ -480,7 +493,7 @@ function update(dt) {
     for (const p of powerups) {
       if (!p.dead && dist(ship, p) < ship.radius + p.radius) {
         p.dead = true;
-        ship.speedTimer = 5;
+        ship.speedTimer = POWERUP_DURATION;
         explode(p.x, p.y, 6);
       }
     }
