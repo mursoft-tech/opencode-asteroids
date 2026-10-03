@@ -21,4 +21,4 @@ Single-file HTML5 canvas game. No package manager, bundler, tests, lint, or CI â
 - State machine: `'playing' | 'dead' | 'gameover' | 'paused'`, with `prevState` for pause/resume and `deadTimer`/`ship.invincible` for respawn invincibility.
 - World is toroidal â€” wrap positions through the `wrap()` helper; don't clamp to edges.
 - `PowerUp` (velocidad) drifts with `wrap()`, expires after 12 s, and on pickup sets `ship.speedTimer = 5`; the boost is `2x` on `THRUST`.
-- The README's "estrella fugaz" asteroid is **not** implemented in `game.js`; the velocidad power-up is. Verify feature claims against `game.js`.
+- The "estrella fugaz" is implemented in `game.js` as an `Asteroid` with `special: true` (fast, cian trail, `ttl` ~6 s, no `split()`, 150 pts). It appears on a periodic `shootingStarTimer`. The velocidad power-up is separate. Verify feature claims against `game.js`.

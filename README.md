@@ -35,11 +35,12 @@ Luego visita `http://localhost:3000`.
 
 ## Puntuación
 
-| Asteroide | Puntos |
-| --------- | ------ |
-| Grande    | 20     |
-| Mediano   | 50     |
-| Pequeño   | 100    |
+| Asteroide      | Puntos |
+| -------------- | ------ |
+| Grande         | 20     |
+| Mediano        | 50     |
+| Pequeño        | 100    |
+| Estrella Fugaz | 150    |
 
 ## Power-ups
 
@@ -53,8 +54,5 @@ Luego visita `http://localhost:3000`.
 - Asteroides se parten en fragmentos más pequeños al ser destruidos
 - Partículas de explosión al destruir asteroides
 - Power-up de velocidad (x2 durante 5 s)
+- Estrella Fugaz: asteroide especial más rápido, con estela cian, que no se fragmenta y desaparece tras ~6 s (150 puntos)
 - Pausa y fin de partida con `Ctrl + Shift + P` / `Ctrl + Shift + X`
-
-## Planeado
-
-- Asteroide "estrella fugaz" (aún no implementado)
