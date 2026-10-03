@@ -4,7 +4,7 @@ Clon del clásico arcade **Asteroids** implementado en canvas HTML5 puro, sin de
 
 ## Descripción
 
-Nave espacial en un campo de asteroides con envolvimiento de bordes (el espacio es toroidal). Destruye asteroides para sumar puntos: los grandes se parten en medianos, los medianos en pequeños. Incluye un power-up de velocidad y permite pausar o terminar la partida con atajos de teclado.
+Nave espacial en un campo de asteroides con envolvimiento de bordes (el espacio es toroidal). Destruye asteroides para sumar puntos: los grandes se parten en medianos, los medianos en pequeños. Incluye un power-up de velocidad, un escudo que protege de los proyectiles enemigos, OVNIs hostiles y permite pausar o terminar la partida con atajos de teclado.
 
 ## Tecnologías
 
@@ -41,12 +41,14 @@ Luego visita `http://localhost:3000`.
 | Mediano        | 50     |
 | Pequeño        | 100    |
 | Estrella Fugaz | 150    |
+| OVNI enemigo   | 200    |
 
 ## Power-ups
 
 | Power-up  | Efecto                                                                                                                        |
 | --------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | Velocidad | Duplica la propulsión de la nave durante 5 s (la nave se dibuja en cian). Aparece al destruir asteroides medianos o grandes. |
+| Escudo    | Protege a la nave de los proyectiles enemigos durante 8 s (anillo verde). Aparece al destruir un OVNI.                        |
 
 ## Características
 
@@ -54,5 +56,7 @@ Luego visita `http://localhost:3000`.
 - Asteroides se parten en fragmentos más pequeños al ser destruidos
 - Partículas de explosión al destruir asteroides
 - Power-up de velocidad (x2 durante 5 s)
+- Power-up de escudo (absorbe proyectiles enemigos durante 8 s)
+- OVNIs enemigos que cruzan la pantalla disparando a la nave
 - Estrella Fugaz: asteroide especial más rápido, con estela cian, que no se fragmenta y desaparece tras ~6 s (150 puntos)
 - Pausa y fin de partida con `Ctrl + Shift + P` / `Ctrl + Shift + X`
