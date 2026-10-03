@@ -29,6 +29,8 @@ Luego visita `http://localhost:3000`.
 | `←` `→`          | Rotar nave        |
 | `↑`              | Propulsar         |
 | `Espacio`        | Disparar          |
+| `S`              | Cambiar skin (en juego) |
+| `1`–`4` / `←` `→` | Elegir skin (en pausa) |
 | `Ctrl + Shift + P` | Pausar / Reanudar |
 | `Ctrl + Shift + X` | Terminar partida  |
 
@@ -48,6 +50,17 @@ Luego visita `http://localhost:3000`.
 | --------- | ----------------------------------------------------------------------------------------------------------------------------- |
 | Velocidad | Duplica la propulsión de la nave durante 5 s (la nave se dibuja en cian). Aparece al destruir asteroides medianos o grandes. |
 
+## Skins
+
+Se cambian con la tecla `S` en pleno juego (cicla a la siguiente) o desde el menú de pausa (`Ctrl + Shift + P`) con las teclas `1`–`4` o las flechas `←` `→`. La elección se guarda en `localStorage` y se aplica también a los iconos de vida.
+
+| # | Skin        | Apariencia                                  |
+| - | ----------- | ------------------------------------------- |
+| 1 | Clásica     | Triángulo con muesca trasera (original)     |
+| 2 | Interceptor | Flecha afilada y alargada                   |
+| 3 | Pesada      | Casco ancho hexagonal con detalle central   |
+| 4 | Fantasma    | Contorno punteado                           |
+
 ## Características
 
 - 3 vidas con invencibilidad temporal al reaparecer (parpadeo)
@@ -55,4 +68,5 @@ Luego visita `http://localhost:3000`.
 - Partículas de explosión al destruir asteroides
 - Power-up de velocidad (x2 durante 5 s)
 - Estrella Fugaz: asteroide especial más rápido, con estela cian, que no se fragmenta y desaparece tras ~6 s (150 puntos)
+- Skins de nave seleccionables desde la pausa, persistentes entre partidas
 - Pausa y fin de partida con `Ctrl + Shift + P` / `Ctrl + Shift + X`
